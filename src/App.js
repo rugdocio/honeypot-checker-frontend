@@ -48,15 +48,15 @@ function App() {
     <div className="App">
       <Space direction="vertical" style={{ width: "100%" }}>
         <div style={{ display: "flex" }}>
-          <div style={{ width: "180px", marginRight: "5px" }}>
+          <div style={{ width: "180px", marginRight: "5px"}}>
             <ChainSelect onSelect={onSelect} disabled={loading}/>
           </div>
           <div style={{ flexGrow: 1 }}>
             <TokenSearch onStart={onStart} disabled={loading}/>
           </div>
         </div>
-        <Card title="Token status" bordered={false} style={{ width: "100%" }}>
-          <ExperimentOutlined style={{ fontSize: 70, marginBottom: "40px" }} />
+        <Card title="Token status" bordered={false} style={{ width: "100%", backgroundColor: "transparent" }}>
+          <ExperimentOutlined style={{ fontSize: 70, marginBottom: "40px" , color: '#6d84a2' }} />
           {loading ? <div><Spin/></div> : <></>}
           {status === undefined ?
             <div style={{ color: '#6d84a2' }}>
