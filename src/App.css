@@ -14,7 +14,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.ant-typography {
+  color: white;
+}
 .ant-select-selector {
   height:100% !important;
   color: white !important;
