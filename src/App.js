@@ -9,7 +9,7 @@ import checkVerified from "./actions/checkVerified";
 const { Text } = Typography;
 const interpretations = {
   "UNKNOWN": <span>The status of this token is unknown.</span>, // 0, unknown
-  "OK": <span><b>✅ Honey pot tests passed</b>. Our program was able to buy and sell it succesfully.\n This however does not guarantee that it is not a honeypot.</span>, // 1, no issues
+  "OK": <span><b>✅ Honey pot tests passed</b>. Our program was able to buy and sell it succesfully. This however does not guarantee that it is not a honeypot.</span>, // 1, no issues
   "NO_PAIRS": <span>⚠️ Could not find any trading pair for this token on the default router and could thus not test it.</span>, // 2, no pairs found
   "SEVERE_FEE": <span>⚠️ A <b>severely high trading fee</b> (over 50%) was detected when selling or buying this token.</span>, //  3, fee > 50%
   "HIGH_FEE": <span>⚠️ A <b>high trading fee</b> was detected when selling or buying this token.</span>, //  4, fee > 20%
