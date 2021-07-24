@@ -6,7 +6,7 @@ const checkHoneypot = () => {
         try {
             console.log(chain)
             const res =await fetch(`${HONEYPOT_API_ENDPOINT}?address=${address}&chain=${chain}`)
-            if (res.status != 200) {
+            if (res.status !== 200) {
                 notification.open({
                     message: `Check failed with status ${res.status}`,
                     description: await res.text()

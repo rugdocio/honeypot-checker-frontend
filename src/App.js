@@ -1,7 +1,7 @@
 import "./App.css";
 import { Card, Space, Spin, Typography } from 'antd';
 import TokenSearch from "./components/TokenSearch";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ChainSelect from "./components/ChainSelect";
 import { ExperimentOutlined } from '@ant-design/icons';
 import checkHoneypot from "./actions/checkHoneypot";
@@ -20,14 +20,12 @@ const interpretations = {
 const doCheckHoneypot = checkHoneypot();
 
 function App() {
-  const [tokenAddress, setTokenAddress] = useState(undefined);
   const [chain, setChain] = useState("bsc");
 
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(undefined);
 
   const onStart = async (tokenAddress_) => {
-    setTokenAddress(tokenAddress_); 
     if (
       tokenAddress_ === undefined ||
       chain === undefined || loading) {
@@ -60,7 +58,7 @@ function App() {
         <Card title="Token status" bordered={false} style={{ width: "100%" }}>
           <ExperimentOutlined style={{ fontSize: 70, marginBottom: "40px" }} />
           {loading ? <div><Spin/></div> : <></>}
-          {status == undefined ?
+          {status === undefined ?
             <div style={{ color: '#6d84a2' }}>
               <p>Please select a token and chain to get started...</p>
               <p></p>
