@@ -1,0 +1,1 @@
+export const HONEYPOT_API_ENDPOINT="https://honeypot.api.rugdoc.io/api/honeypotStatus.js"

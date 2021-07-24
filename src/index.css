@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color:#0C1219;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.ant-input, .ant-input-affix-wrapper {
+  background-color: #1A2636;
+  color:#fff;
+}
+
+.ant-input-affix-wrapper {
+  border: 1px solid #2b3c52;
+}
+
+.ant-input-affix-wrapper-focused, .ant-input-affix-wrapper:focus {
+  border-color: #4f6480;
+}
+
+.ant-btn-primary, .ant-btn-primary:focus, .ant-btn-primary:hover {
+  color: #1A2636;
+  background: #7BD0DD;
+  border-color: #7BD0DD;
+}
+
+/* LIST ITEM STYLES */
+.ant-list-empty-text {
+  color: #6d84a2;
+}
+.ant-list {
+  color: rgba(255,255,255,.75);
+}
+.ant-list-item-meta-title>a {
+    color: #fff;
+    font-weight: bold;
+}
+
+.ant-list-item-meta-description {
+  color: rgba(255,255,255,.75);
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: 1px solid #2b3c52;
+}
+
+.ant-list-item-meta-content {
+  text-align: left;
+}
+
+/* AVATAR STYLES */
+.ant-list-item-meta-avatar {
+  margin-right: 0;
+}
+
+.ant-avatar {
+  width: 0;
+  height: 0;
+}
