@@ -29,7 +29,7 @@ const checkVerified = () => {
             }
             let verified = true
             for (let el of body['result']){
-                if (el['sourceCode'] === "") {
+                if (el['SourceCode'] === "") {
                     verified = false;
                 }
             }
