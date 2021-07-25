@@ -8,12 +8,12 @@ import checkHoneypot from "./actions/checkHoneypot";
 import checkVerified from "./actions/checkVerified";
 const { Text } = Typography;
 const interpretations = {
-  "UNKNOWN": <span>The status of this token is unknown.</span>, // 0, unknown
+  "UNKNOWN": <span>The status of this token is unknown. This is usually a system error but could also be a bad sign for the token. Be careful.</span>, // 0, unknown
   "OK": <span><b>✅ Honeypot tests passed</b>. Our program was able to buy and sell it succesfully. This however does not guarantee that it is not a honeypot.</span>, // 1, no issues
   "NO_PAIRS": <span>⚠️ Could not find any trading pair for this token on the default router and could thus not test it.</span>, // 2, no pairs found
   "SEVERE_FEE": <span>⚠️ A <b>severely high trading fee</b> (over 50%) was detected when selling or buying this token.</span>, //  3, fee > 50%
-  "HIGH_FEE": <span>⚠️ A <b>high trading fee</b> was detected when selling or buying this token.</span>, //  4, fee > 20%
-  "MEDIUM_FEE": <span>⚠️ A <b>trading fee of over 10%</b> was detected when selling or buying this token.</span>, // 5, fee > 10%
+  "HIGH_FEE": <span>⚠️ A <b>high trading fee</b> (Between 20% and 50%) was detected when selling or buying this token. Our system was however able to sell the token again.</span>, //  4, fee > 20%
+  "MEDIUM_FEE": <span>⚠️ A <b>trading fee of over 10%</b> but less then 20% was detected when selling or buying this token. Our system was however able to sell the token again.</span>, // 5, fee > 10%
   "APPROVE_FAILED": <span>🚨 Failed to approve the token. This is very likely a <b>honeypot</b>.</span>, // 6, approval failed
   "SWAP_FAILED": <span>🚨 Failed to sell the token. This is very likely a <b>honeypot</b>.</span> // 7, swap failed
 }
