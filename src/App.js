@@ -42,12 +42,12 @@ function App() {
       return;
     }
     setLoadingHoneypot(true);
-    setLoadingVerified(true);
     doCheckHoneypot(tokenAddress_, chain).then(s => {
       setStatus(s);
       setLoadingHoneypot(false);
     });
     if (chain !== "avax") {
+      setLoadingVerified(true);
       doCheckVerified(tokenAddress_, chain).then(s => {
         setVerified(s);
         setLoadingVerified(false);
