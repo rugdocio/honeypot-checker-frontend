@@ -6,6 +6,9 @@ import ChainSelect from "./components/ChainSelect";
 import { ExperimentOutlined } from '@ant-design/icons';
 import checkHoneypot from "./actions/checkHoneypot";
 import checkVerified from "./actions/checkVerified";
+
+import graylist from "./GrayList";
+
 const { Text } = Typography;
 const interpretations = {
   "UNKNOWN": <span>The status of this token is unknown. This is usually a system error but could also be a bad sign for the token. Be careful.</span>, // 0, unknown
@@ -41,11 +44,7 @@ function App() {
       chain === undefined || loadingVerified || loadingHoneypot) {
       return;
     }
-    setLoadingHoneypot(true);
-    doCheckHoneypot(tokenAddress_, chain).then(s => {
-      setStatus(s);
-      setLoadingHoneypot(false);
-    });
+    
     if (chain !== "avax") {
       setLoadingVerified(true);
       doCheckVerified(tokenAddress_, chain).then(s => {
@@ -53,6 +52,17 @@ function App() {
         setLoadingVerified(false);
       });
     }
+
+    if(isGraylisted(chain, tokenAddress_)) {
+      setStatus("UNKNOWN");
+      return;
+    }
+
+    setLoadingHoneypot(true);
+    doCheckHoneypot(tokenAddress_, chain).then(s => {
+      setStatus(s);
+      setLoadingHoneypot(false);
+    });
   };
 
   const onSelect = async (chain_) => {
@@ -93,6 +103,15 @@ function App() {
       </Space>
     </div>
   );
+}
+
+function isGraylisted(chain, address) {
+  if (!(chain in graylist))
+    return false;
+  const chainGraylist = graylist[chain];
+  if(!(address.lower() in chainGraylist))
+    return false;
+  return chainGraylist[address.lower()];
 }
 
 export default App;
