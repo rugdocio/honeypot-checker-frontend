@@ -109,9 +109,9 @@ function isGraylisted(chain, address) {
   if (!(chain in graylist))
     return false;
   const chainGraylist = graylist[chain];
-  if(!(address.lower() in chainGraylist))
+  if(!(address.toLowerCase() in chainGraylist))
     return false;
-  return chainGraylist[address.lower()];
+  return chainGraylist[address.toLowerCase()];
 }
 
 export default App;
