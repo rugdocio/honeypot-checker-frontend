@@ -6,6 +6,9 @@ import ChainSelect from "./components/ChainSelect";
 import { ExperimentOutlined } from '@ant-design/icons';
 import checkHoneypot from "./actions/checkHoneypot";
 import checkVerified from "./actions/checkVerified";
+
+import graylist from "./GrayList";
+
 const { Text } = Typography;
 const interpretations = {
   "UNKNOWN": <span>The status of this token is unknown. This is usually a system error but could also be a bad sign for the token. Be careful.</span>, // 0, unknown
@@ -42,15 +45,24 @@ function App() {
       || loadingVerified || loadingHoneypot) {
       return ;
     }
+    
+    if (chain !== "avax") {
+      setLoadingVerified(true);
+      doCheckVerified(tokenAddress_, chain).then(s => {
+        setVerified(s);
+        setLoadingVerified(false);
+      });
+    }
+
+    if(isGraylisted(chain, tokenAddress_)) {
+      setStatus("UNKNOWN");
+      return;
+    }
+
     setLoadingHoneypot(true);
-    setLoadingVerified(true);
     doCheckHoneypot(tokenAddress_, chain).then(s => {
       setStatus(s);
       setLoadingHoneypot(false);
-    });
-    doCheckVerified(tokenAddress_, chain).then(s => {
-      setVerified(s);
-      setLoadingVerified(false);
     });
   };
 
@@ -64,16 +76,16 @@ function App() {
     <div className="App">
       <Space direction="vertical" style={{ width: "100%" }}>
         <div style={{ display: "flex" }}>
-          <div style={{ width: "180px", marginRight: "5px"}}>
-            <ChainSelect onSelect={onSelect} disabled={loadingHoneypot || loadingVerified}/>
+          <div style={{ width: "180px", marginRight: "5px" }}>
+            <ChainSelect onSelect={onSelect} disabled={loadingHoneypot || loadingVerified} />
           </div>
           <div style={{ flexGrow: 1 }}>
-            <TokenSearch onStart={onStart} disabled={loadingHoneypot || loadingVerified}/>
+            <TokenSearch onStart={onStart} disabled={loadingHoneypot || loadingVerified} />
           </div>
         </div>
         <Card title="Token status" bordered={false} style={{ width: "100%", backgroundColor: "transparent" }}>
-          <ExperimentOutlined style={{ fontSize: 70, marginBottom: "40px" , color: '#6d84a2' }} />
-          {loadingHoneypot || loadingVerified ? <div><Spin/></div> : <></>}
+          <ExperimentOutlined style={{ fontSize: 70, marginBottom: "40px", color: '#6d84a2' }} />
+          {loadingHoneypot || loadingVerified ? <div><Spin /></div> : <></>}
           {status === undefined ?
             <div style={{ color: '#6d84a2' }}>
               <p>Please select a token and chain to get started...</p>
@@ -82,16 +94,25 @@ function App() {
             </div>
             :
             <div>
-               <Text code style={{fontSize: "16px"}}>{interpretations[status]}</Text>
+              <Text code style={{ fontSize: "16px" }}>{interpretations[status]}</Text>
             </div>
           }
-           {verified === undefined ?  <></> : <div style={{marginTop: "10px"}}>
-            <Text code style={{fontSize: "16px"}}>{verifiedMessage[verified]}</Text>
-         </div>}
+          {verified === undefined ? <></> : <div style={{ marginTop: "10px" }}>
+            <Text code style={{ fontSize: "16px" }}>{verifiedMessage[verified]}</Text>
+          </div>}
         </Card>
       </Space>
     </div>
   );
+}
+
+function isGraylisted(chain, address) {
+  if (!(chain in graylist))
+    return false;
+  const chainGraylist = graylist[chain];
+  if(!(address.toLowerCase() in chainGraylist))
+    return false;
+  return chainGraylist[address.toLowerCase()];
 }
 
 export default App;

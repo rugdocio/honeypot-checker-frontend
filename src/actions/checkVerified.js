@@ -5,7 +5,6 @@ const checkVerified = () => {
     return async (address, chain) => {
         try {
             const endpoint = EXPLORER_ENDPOINTS[chain];
-
             const res =await fetch(`${endpoint}/api?module=contract&action=getsourcecode&address=${address}`)
     
             console.log(res)
