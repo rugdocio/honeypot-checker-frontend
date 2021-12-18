@@ -9,7 +9,6 @@ function ChainSelect(props) {
         <Option value="poly">Polygon</Option>
         <Option value="avax">Avalanche</Option>
         <Option value="ftm">Fantom</Option>
-        <Option value="eth">Ethereum</Option>
     
     </Select>
 
