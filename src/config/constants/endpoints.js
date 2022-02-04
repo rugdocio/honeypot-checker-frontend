@@ -7,4 +7,5 @@ export const EXPLORER_ENDPOINTS = {
     "eth": "https://api.etherscan.com",
     "ftm": "https://api.ftmscan.com",
     "avax": "https://cchain.explorer.avax.network/",
+
 }

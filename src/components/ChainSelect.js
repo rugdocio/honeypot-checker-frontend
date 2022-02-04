@@ -1,4 +1,4 @@
-import { Select } from 'antd';
+import { Select } from "antd";
 
 const { Option } = Select;
 

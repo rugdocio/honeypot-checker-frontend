@@ -40,9 +40,10 @@ function App() {
 
   const onStart = async (tokenAddress_) => {
     if (
-      tokenAddress_ === undefined ||
-      chain === undefined || loadingVerified || loadingHoneypot) {
-      return;
+      tokenAddress_ === undefined || tokenAddress_ ===""
+      || chain === undefined|| chain ===""
+      || loadingVerified || loadingHoneypot) {
+      return ;
     }
     
     if (chain !== "avax") {
